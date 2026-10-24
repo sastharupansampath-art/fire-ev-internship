@@ -1,0 +1,15 @@
+Diode I-V at 25C
+V1 in 0 0
+R1 in anode 1k
+D1 anode 0 Dmod
+
+.model Dmod D(Is=2.52e-9 N=1.75)
+.temp 25
+
+.control
+dc V1 0 0.8 0.005
+set wr_singlescale
+wrdata diode_25C.txt v(anode) -i(V1)
+quit
+.endc
+.end
