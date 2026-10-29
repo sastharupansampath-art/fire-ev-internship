@@ -10,7 +10,8 @@
 | 23-10-2026 | Friday| Simulated diode I–V characteristics at 25°C and 75°C using ngspice. Exported simulation data and plotted temperature comparison curves using Python and Matplotlib. | Increasing temperature generally reduces the forward voltage of a silicon diode at a given current. | How does a BMS compensate for temperature-dependent changes in electronic sensing circuits? |
 | 26-10-2026 | Mondayy| Studied the MOSFET structure, including the gate, oxide, substrate, source and drain. Sketched and labelled the cross-section and studied how gate voltage controls channel formation. | A MOSFET is a voltage-controlled device in which the gate electric field controls the conducting channel between the source and drain. ||
 | 27-10-2026 | Tuesday | Studied NMOS operation and its three regions: cut-off, linear (triode) and saturation. Compared their operating conditions and noted the role of threshold voltage. | NMOS behaviour depends on the gate-to-source and drain-to-source voltages. The operating region determines how the transistor controls current. |  |
-
+| 29-10-2026 | Wednesday | Studied NMOS I–V characteristics, basic saturation drain-current equations, the effect of the W/L ratio, and channel-length modulation. Practised two basic drain-current calculations. | NMOS drain current depends on applied voltages, transistor dimensions, and the operating region. A higher W/L ratio generally increases the drain current under the same operating conditions. | |
+| 29-10-2026 | thursday| Studied PMOS operation and compared it with NMOS, including their main charge carriers. Reviewed how complementary NMOS and PMOS pairs form CMOS circuits and why PMOS devices are often made wider. | CMOS combines NMOS and PMOS transistors to implement logic efficiently with low static power consumption in stable states. PMOS devices are often wider to compensate for lower hole mobility. | |
 
 
 
