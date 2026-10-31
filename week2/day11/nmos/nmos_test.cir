@@ -1,0 +1,17 @@
+* SKY130A NMOS operating point test
+.lib "/home/sastha-rupan-s/.volare/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.option scale=1e-6
+
+VDS d 0 DC 1.0
+VGS g 0 DC 1.0
+
+XM1 d g 0 0 sky130_fd_pr__nfet_01v8 L=0.15 W=1
+
+.control
+op
+echo "===== NMOS RESULTS ====="
+print v(d) v(g)
+print -i(VDS)
+.endc
+
+.end

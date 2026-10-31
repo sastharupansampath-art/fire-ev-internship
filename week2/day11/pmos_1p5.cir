@@ -1,0 +1,15 @@
+
+* SKY130A PMOS output characteristic
+.lib "/home/sastha-rupan-s/.volare/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.option scale=1e-6
+VDD s 0 1.8
+VSD s d 0
+VSG s g 1.5
+XM1 d g s s sky130_fd_pr__pfet_01v8 L=0.15 W=2
+.control
+set wr_singlescale
+dc VSD 0 1.8 0.02
+wrdata data/pmos_output_1p5.dat v(s,d) -i(VSD)
+quit
+.endc
+.end

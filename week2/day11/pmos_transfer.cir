@@ -1,0 +1,17 @@
+
+* SKY130A PMOS transfer characteristics
+.lib "/home/sastha-rupan-s/.volare/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.option scale=1e-6
+
+VDD s 0 1.8
+VSD s d 1.8
+VSG s g 0
+XM1 d g s s sky130_fd_pr__pfet_01v8 L=0.15 W=2
+
+.control
+set wr_singlescale
+dc VSG 0 1.8 0.01
+wrdata data/pmos_transfer.dat -i(VSD)
+quit
+.endc
+.end

@@ -1,0 +1,18 @@
+* SKY130A PMOS operating point test
+.lib "/home/sastha-rupan-s/.volare/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.option scale=1e-6
+
+VDD s 0 DC 1.8
+VSG s g DC 0.8
+VSD s d DC 0.8
+
+XM1 d g s s sky130_fd_pr__pfet_01v8 L=0.15 W=2
+
+.control
+op
+echo "===== PMOS RESULTS ====="
+print v(s) v(g) v(d)
+print -i(VSD)
+.endc
+
+.end
