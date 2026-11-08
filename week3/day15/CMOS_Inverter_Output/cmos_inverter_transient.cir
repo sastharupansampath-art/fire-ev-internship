@@ -1,0 +1,21 @@
+* CMOS inverter - generic Level-1 MOS model (educational, not SKY130A)
+* MOS terminal order: Drain Gate Source Bulk
+VDD vdd 0 DC 3
+VIN vin 0 PULSE(0 3 0 1n 1n 5u 10u)
+
+* PMOS pull-up and NMOS pull-down
+MP1 vout vin vdd vdd PMOS W=10u L=0.18u
+MN1 vout vin 0   0   NMOS W=5u  L=0.18u
+
+* Small output load
+CL vout 0 10f
+
+.model NMOS NMOS (LEVEL=1 VTO=0.7  KP=120u LAMBDA=0.02)
+.model PMOS PMOS (LEVEL=1 VTO=-0.7 KP=50u  LAMBDA=0.02)
+
+.control
+set noaskquit
+tran 10n 40u
+plot v(vin) v(vout)
+.endc
+.end

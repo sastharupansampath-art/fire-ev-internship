@@ -1,0 +1,13 @@
+* CMOS inverter DC transfer curve - generic Level-1 MOS model
+VDD vdd 0 DC 3
+VIN vin 0 DC 0
+MP1 vout vin vdd vdd PMOS W=10u L=0.18u
+MN1 vout vin 0   0   NMOS W=5u  L=0.18u
+.model NMOS NMOS (LEVEL=1 VTO=0.7  KP=120u LAMBDA=0.02)
+.model PMOS PMOS (LEVEL=1 VTO=-0.7 KP=50u  LAMBDA=0.02)
+.control
+set noaskquit
+dc VIN 0 3 0.01
+plot v(vout) vs v(vin)
+.endc
+.end

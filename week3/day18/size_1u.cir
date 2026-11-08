@@ -1,0 +1,16 @@
+CMOS inverter sizing test - PMOS width 1u
+VDD vdd 0 DC 1.8
+VIN in 0 PULSE(0 1.8 1n 100p 100p 5n 10n)
+.model NMOD NMOS (LEVEL=1 VTO=0.55 KP=200u LAMBDA=0.02)
+.model PMOD PMOS (LEVEL=1 VTO=-0.55 KP=80u LAMBDA=0.02)
+MP out in vdd vdd PMOD W=1u L=0.15u
+MN out in 0 0 NMOD W=1u L=0.15u
+CLOAD out 0 10f
+.control
+set wr_singlescale
+set wr_vecnames
+tran 10p 30n
+wrdata ../data/size_1u.dat v(in) v(out)
+quit
+.endc
+.end

@@ -1,0 +1,5 @@
+Approximate V_M (Vin = Vout): 0.96224 V
+Rise time (10%-90%): 0.03977 ns
+Fall time (90%-10%): 0.03710 ns
+t_PHL (input rise to output fall): 0.03030 ns
+t_PLH (input fall to output rise): 0.03430 ns
