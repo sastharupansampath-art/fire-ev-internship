@@ -1,0 +1,25 @@
+* Day 20 - CMOS NOR2
+* Educational Level-1 MOS models; not SKY130A.
+.param VDD=1.8
+VDD vdd 0 {VDD}
+VA a 0 PULSE(0 {VDD} 0 100p 100p 20n 40n)
+VB b 0 PULSE(0 {VDD} 0 100p 100p 40n 80n)
+
+* Pull-up network: PMOS in series
+MPA n1 a vdd vdd PMOD W=2u L=0.18u
+MPB y b n1 vdd PMOD W=2u L=0.18u
+
+* Pull-down network: NMOS in parallel
+MNA y a 0 0 NMOD W=1u L=0.18u
+MNB y b 0 0 NMOD W=1u L=0.18u
+
+CLOAD y 0 10f
+.model NMOD NMOS (LEVEL=1 VTO=0.5 KP=200u LAMBDA=0.02)
+.model PMOD PMOS (LEVEL=1 VTO=-0.5 KP=100u LAMBDA=0.02)
+
+.control
+set noaskquit
+tran 0.1n 80n
+plot v(a) v(b) v(y)
+.endc
+.end

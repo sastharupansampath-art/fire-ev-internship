@@ -1,0 +1,27 @@
+* Fire EV Internship - Week 4: Combinational CMOS Logic
+* SKY130A PDK: /home/sastha-rupan-s/.volare/volare/sky130/versions/c6d73a35f524070e85faff4a6a9eef49553ebc2b/sky130A
+* Typical process corner; educational circuit sizing, not sign-off design.
+.lib "/home/sastha-rupan-s/.volare/volare/sky130/versions/c6d73a35f524070e85faff4a6a9eef49553ebc2b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.param VDD=1.8
+.param LCH=0.15u
+.param WN=1u
+.param WP=2u
+* Model identifiers discovered from installed PDK:
+* NMOS: sky130_fd_pr__nfet_01v8__model.0
+* PMOS: sky130_fd_pr__pfet_01v8__model.0
+* NOR2: PMOS series; NMOS parallel.
+VDD vp 0 1.8
+VA a 0 PULSE(0 1.8 0 100p 100p 10n 20n)
+VB b 0 PULSE(0 1.8 0 100p 100p 20n 40n)
+CLOAD y 0 10f
+MPA n1 a vp vp sky130_fd_pr__pfet_01v8__model.0 W={WP} L={LCH}
+MPB y b n1 vp sky130_fd_pr__pfet_01v8__model.0 W={WP} L={LCH}
+MNA y a 0 0 sky130_fd_pr__nfet_01v8__model.0 W={WN} L={LCH}
+MNB y b 0 0 sky130_fd_pr__nfet_01v8__model.0 W={WN} L={LCH}
+
+.control
+set noaskquit
+tran 100p 80n
+wrdata results/nor2_transient.dat v(a) v(b) v(y)
+.endc
+.end

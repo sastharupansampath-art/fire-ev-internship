@@ -1,0 +1,30 @@
+** sch_path: /home/sastha-rupan-s/fire-ev-internship/week04/FireEV_Week4_Xschem/AO121/sky130_fd_sc_hd__a21oi_1.sch
+**.subckt sky130_fd_sc_hd__a21oi_1 A1 A2 B1 VGND VNB VPB VPWR Y
+*.ipin A1
+*.ipin A2
+*.ipin B1
+*.ipin VGND
+*.ipin VNB
+*.ipin VPB
+*.ipin VPWR
+*.opin Y
+XM1 net1 A1 VPWR VPB sky130_fd_pr__pfet_01v8_hvt L=150000u W=1e+06u nf=1 ad=expr('int((@nf + 1)/2) * @W / @nf * 0.29')
++ as=expr('int((@nf + 2)/2) * @W / @nf * 0.29') pd=expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)') ps=expr('2*int((@nf + 2)/2) * (@W / @nf + 0.29)')
++ nrd=expr('0.29 / @W ') nrs=expr('0.29 / @W ') sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net1 A2 VPWR VPB sky130_fd_pr__pfet_01v8_hvt L=150000u W=1e+06u nf=1 ad=expr('int((@nf + 1)/2) * @W / @nf * 0.29')
++ as=expr('int((@nf + 2)/2) * @W / @nf * 0.29') pd=expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)') ps=expr('2*int((@nf + 2)/2) * (@W / @nf + 0.29)')
++ nrd=expr('0.29 / @W ') nrs=expr('0.29 / @W ') sa=0 sb=0 sd=0 mult=1 m=1
+XM2 net1 B1 Y VPB sky130_fd_pr__pfet_01v8_hvt L=150000u W=1e+06u nf=1 ad=expr('int((@nf + 1)/2) * @W / @nf * 0.29')
++ as=expr('int((@nf + 2)/2) * @W / @nf * 0.29') pd=expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)') ps=expr('2*int((@nf + 2)/2) * (@W / @nf + 0.29)')
++ nrd=expr('0.29 / @W ') nrs=expr('0.29 / @W ') sa=0 sb=0 sd=0 mult=1 m=1
+XM5 Y A1 net2 VNB sky130_fd_pr__nfet_01v8 L=150000u W=650000u nf=1 ad=expr('int((@nf + 1)/2) * @W / @nf * 0.29')
++ as=expr('int((@nf + 2)/2) * @W / @nf * 0.29') pd=expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)') ps=expr('2*int((@nf + 2)/2) * (@W / @nf + 0.29)')
++ nrd=expr('0.29 / @W ') nrs=expr('0.29 / @W ') sa=0 sb=0 sd=0 mult=1 m=1
+XM0 net2 A2 VGND VNB sky130_fd_pr__nfet_01v8 L=150000u W=650000u nf=1 ad=expr('int((@nf + 1)/2) * @W / @nf * 0.29')
++ as=expr('int((@nf + 2)/2) * @W / @nf * 0.29') pd=expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)') ps=expr('2*int((@nf + 2)/2) * (@W / @nf + 0.29)')
++ nrd=expr('0.29 / @W ') nrs=expr('0.29 / @W ') sa=0 sb=0 sd=0 mult=1 m=1
+XM3 Y B1 VGND VNB sky130_fd_pr__nfet_01v8 L=150000u W=650000u nf=1 ad=expr('int((@nf + 1)/2) * @W / @nf * 0.29')
++ as=expr('int((@nf + 2)/2) * @W / @nf * 0.29') pd=expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)') ps=expr('2*int((@nf + 2)/2) * (@W / @nf + 0.29)')
++ nrd=expr('0.29 / @W ') nrs=expr('0.29 / @W ') sa=0 sb=0 sd=0 mult=1 m=1
+**.ends
+.end

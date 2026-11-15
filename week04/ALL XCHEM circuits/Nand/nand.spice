@@ -1,0 +1,27 @@
+** sch_path: /mnt/d/EDA/projects/analog/nand.sch
+**.subckt nand
+*.ipin B
+*.ipin A
+*.ipin B
+*.opin Y
+XM1 Y A net1 GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0 mult=1
+XM2 net1 B GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0 mult=1
+XM3 Y A VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0 mult=1
+XM4 Y B VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0 mult=1
+VDD VDD GND 1.8
+VA A GND PULSE(0 1.8 0n 100p 100p 20n 40n)
+VB B GND PULSE(0 1.8 20n 100p 100p 20n 40n)
+**** begin user architecture code
+
+.lib /mnt/d/EDA/pdk/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.control
+save all
+tran 100p 200n
+run
+plot v(A) v(B) v(Y)
+.endc
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

@@ -1,0 +1,37 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * fire ev - sky130 aoi21 transient testbench
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vpwr                                       1.8
+vgnd                                         0
+vpb                                        1.8
+vnb                                          0
+a1                                           0
+a2                                           0
+b1                                           0
+net1                                       1.8
+y                                          1.8
+net2                                 0.0211157
+vb1#branch                                   0
+va2#branch                                   0
+va1#branch                                   0
+vvnb#branch                        3.67171e-12
+vvpb#branch                         -6.245e-17
+vvgnd#branch                       1.20006e-13
+vvpwr#branch                      -3.79172e-12
+
+
+No. of Data Rows : 10050
+"/home/sastha-rupan-s/fire-ev-internship/week04/FireEV_Week4_Xschem/AO121/simulation/aoi21_run/aoi21_waveform.csv": No such file or directory
+Note: Simulation executed from .control section 

@@ -1,0 +1,20 @@
+warning, can't find model 'sky130_fd_pr__pfet_01v8__model.0' from line
+    mpa y a vp vp sky130_fd_pr__pfet_01v8__model.0 w={wp} l={lch}
+warning, can't find model 'sky130_fd_pr__pfet_01v8__model.0' from line
+    mpb y b vp vp sky130_fd_pr__pfet_01v8__model.0 w={wp} l={lch}
+warning, can't find model 'sky130_fd_pr__nfet_01v8__model.0' from line
+    mna y a n1 vn sky130_fd_pr__nfet_01v8__model.0 w={wn} l={lch}
+warning, can't find model 'sky130_fd_pr__nfet_01v8__model.0' from line
+    mnb n1 b vn vn sky130_fd_pr__nfet_01v8__model.0 w={wn} l={lch}
+
+Note: No compatibility mode selected!
+
+
+Circuit: * fire ev internship - week 4: combinational cmos logic
+
+Error on line:
+  m.xorab.x1.mpa xorab.n1 a vp vp sky130_fd_pr__pfet_01v8__model.0 w=    2.000000000000000e-06     l=    1.500000000000000e-07   
+could not find a valid modelname
+    Simulation interrupted due to error!
+
+Note: No ".plot", ".print", or ".fourier" lines; no simulations run

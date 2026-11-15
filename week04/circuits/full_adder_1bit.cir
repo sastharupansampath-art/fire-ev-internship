@@ -1,0 +1,44 @@
+* Fire EV Internship - Week 4: Combinational CMOS Logic
+* SKY130A PDK: /home/sastha-rupan-s/.volare/volare/sky130/versions/c6d73a35f524070e85faff4a6a9eef49553ebc2b/sky130A
+* Typical process corner; educational circuit sizing, not sign-off design.
+.lib "/home/sastha-rupan-s/.volare/volare/sky130/versions/c6d73a35f524070e85faff4a6a9eef49553ebc2b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.param VDD=1.8
+.param LCH=0.15u
+.param WN=1u
+.param WP=2u
+* Model identifiers discovered from installed PDK:
+* NMOS: sky130_fd_pr__nfet_01v8__model.0
+* PMOS: sky130_fd_pr__pfet_01v8__model.0
+* 1-bit full adder: SUM=A XOR B XOR CIN; COUT=AB+CIN(A XOR B).
+VDD vp 0 1.8
+VA a 0 PULSE(0 1.8 0 100p 100p 10n 20n)
+VB b 0 PULSE(0 1.8 0 100p 100p 20n 40n)
+VC cin 0 PULSE(0 1.8 0 100p 100p 40n 80n)
+XORAB a b x1 vp 0 XOR2
+XORSUM x1 cin sum vp 0 XOR2
+XAND1 a b nab vp 0 NAND2
+XAND2 x1 cin nxc vp 0 NAND2
+XCARRY nab nxc cout vp 0 NAND2
+CLOADS sum 0 10f
+CLOADC cout 0 10f
+
+.subckt NAND2 A B Y VP VN
+MPA Y A VP VP sky130_fd_pr__pfet_01v8__model.0 W={WP} L={LCH}
+MPB Y B VP VP sky130_fd_pr__pfet_01v8__model.0 W={WP} L={LCH}
+MNA Y A N1 VN sky130_fd_pr__nfet_01v8__model.0 W={WN} L={LCH}
+MNB N1 B VN VN sky130_fd_pr__nfet_01v8__model.0 W={WN} L={LCH}
+.ends NAND2
+
+.subckt XOR2 A B Y VP VN
+X1 A B N1 VP VN NAND2
+X2 A N1 N2 VP VN NAND2
+X3 B N1 N3 VP VN NAND2
+X4 N2 N3 Y VP VN NAND2
+.ends XOR2
+
+.control
+set noaskquit
+tran 100p 80n
+wrdata results/full_adder_1bit_transient.dat v(a) v(b) v(cin) v(sum) v(cout)
+.endc
+.end

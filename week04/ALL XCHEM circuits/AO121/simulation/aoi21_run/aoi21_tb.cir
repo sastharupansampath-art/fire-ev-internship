@@ -1,0 +1,37 @@
+* Fire EV - SKY130 AOI21 transient testbench
+* Generated from the six MOSFET connections exported by Xschem.
+* Function: Y = NOT((A1 AND A2) OR B1)
+* Supply: 1.8 V; process corner: TT; temperature: 27 C
+.lib "/home/sastha-rupan-s/.volare/volare/sky130/versions/c6d73a35f524070e85faff4a6a9eef49553ebc2b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+
+* Power and bulk connections
+VVPWR VPWR 0 1.8
+VVGND VGND 0 0
+VVPB VPB 0 1.8
+VVNB VNB 0 0
+
+* Binary sequence: A1 is slowest, B1 is fastest.
+VA1 A1 0 PWL(0 0 99n 0 100n 1.8 200n 1.8)
+VA2 A2 0 PWL(0 0 49n 0 50n 1.8 149n 1.8 150n 0 200n 0)
+VB1 B1 0 PWL(0 0 24n 0 25n 1.8 74n 1.8 75n 0 124n 0 125n 1.8 174n 1.8 175n 0 200n 0)
+
+* Xschem-exported transistor instances (same six devices/connectivity)
+XM1 net1 A1 VPWR VPB sky130_fd_pr__pfet_01v8_hvt L=150000u W=1e+06u nf=1
+XM4 net1 A2 VPWR VPB sky130_fd_pr__pfet_01v8_hvt L=150000u W=1e+06u nf=1
+XM2 net1 B1 Y VPB sky130_fd_pr__pfet_01v8_hvt L=150000u W=1e+06u nf=1
+XM5 Y A1 net2 VNB sky130_fd_pr__nfet_01v8 L=150000u W=650000u nf=1
+XM0 net2 A2 VGND VNB sky130_fd_pr__nfet_01v8 L=150000u W=650000u nf=1
+XM3 Y B1 VGND VNB sky130_fd_pr__nfet_01v8 L=150000u W=650000u nf=1
+
+* Small output load for a stable transient plot
+CLOAD Y 0 5f
+.options TEMP=27 method=gear reltol=1e-3 abstol=1e-12 vntol=1e-6
+
+.control
+set noaskquit
+set wr_singlescale
+set wr_vecnames
+tran 20p 200n
+wrdata "/home/sastha-rupan-s/fire-ev-internship/week04/FireEV_Week4_Xschem/AO121/simulation/aoi21_run/aoi21_waveform.csv" v(A1) v(A2) v(B1) v(Y)
+.endc
+.end

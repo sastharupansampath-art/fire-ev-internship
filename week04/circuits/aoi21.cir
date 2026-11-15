@@ -1,0 +1,33 @@
+* Fire EV Internship - Week 4: Combinational CMOS Logic
+* SKY130A PDK: /home/sastha-rupan-s/.volare/volare/sky130/versions/c6d73a35f524070e85faff4a6a9eef49553ebc2b/sky130A
+* Typical process corner; educational circuit sizing, not sign-off design.
+.lib "/home/sastha-rupan-s/.volare/volare/sky130/versions/c6d73a35f524070e85faff4a6a9eef49553ebc2b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.param VDD=1.8
+.param LCH=0.15u
+.param WN=1u
+.param WP=2u
+* Model identifiers discovered from installed PDK:
+* NMOS: sky130_fd_pr__nfet_01v8__model.0
+* PMOS: sky130_fd_pr__pfet_01v8__model.0
+* AOI21: Y = NOT((A AND B) OR C).
+VDD vp 0 1.8
+VA a 0 PULSE(0 1.8 0 100p 100p 10n 20n)
+VB b 0 PULSE(0 1.8 0 100p 100p 20n 40n)
+VC c 0 PULSE(0 1.8 0 100p 100p 40n 80n)
+CLOAD y 0 10f
+* Y = NOT((A AND B) OR C)
+* PUN: (PMOS A parallel PMOS B) in series with PMOS C
+MPA p1 a vp vp sky130_fd_pr__pfet_01v8__model.0 W={WP} L={LCH}
+MPB p1 b vp vp sky130_fd_pr__pfet_01v8__model.0 W={WP} L={LCH}
+MPC y c p1 vp sky130_fd_pr__pfet_01v8__model.0 W={WP} L={LCH}
+* PDN: (NMOS A series NMOS B) in parallel with NMOS C
+MNA y a n1 0 sky130_fd_pr__nfet_01v8__model.0 W={WN} L={LCH}
+MNB n1 b 0 0 sky130_fd_pr__nfet_01v8__model.0 W={WN} L={LCH}
+MNC y c 0 0 sky130_fd_pr__nfet_01v8__model.0 W={WN} L={LCH}
+
+.control
+set noaskquit
+tran 100p 80n
+wrdata results/aoi21_transient.dat v(a) v(b) v(c) v(y)
+.endc
+.end
